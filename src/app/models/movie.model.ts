@@ -1,7 +1,8 @@
 export interface Movie {
   id: number;
   title: string;
-  imageUrl: string;
-  description: string;
+  year: number;
+  rating: number;
+ image: string;
   isWatched: boolean;
 }
