@@ -69,12 +69,25 @@ export class MovieService {
     }
   }
 
+  if (availableMovies.length === 0) return;
 
-  deleteMovie(id: number) {
-    this.movies = this.movies.filter(m => m.id !== id);
+  const randomIndex = Math.floor(Math.random() * availableMovies.length);
+  this.movies.push({ ...availableMovies[randomIndex] });
+}
+
+deleteMovie(id: number): void {
+  this.movies = this.movies.filter(movie => movie.id !== id);
+}
+
+updateRating(id: number, delta: number): void {
+  const movie = this.movies.find(movie => movie.id === id);
+  if (!movie) return;
+
+  const newRating = movie.rating + delta;
+  if (newRating >= 1 && newRating <= 5) {
+    movie.rating = newRating;
   }
-
-
+}
   updateRating(id: number, delta: number) {
     const movie = this.movies.find(m => m.id === id);
     if (!movie) return;
@@ -84,6 +97,12 @@ export class MovieService {
     }
   }
 
+toggleWatched(id: number): void {
+  const movie = this.movies.find(movie => movie.id === id);
+  if (!movie) return;
+
+  movie.isWatched = !movie.isWatched;
+}
 
   toggleWatched(id: number) {
     const movie = this.movies.find(m => m.id === id);

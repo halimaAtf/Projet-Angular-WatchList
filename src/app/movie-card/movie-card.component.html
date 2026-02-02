@@ -1,0 +1,20 @@
+<div class="card" [class.watched]="movie().isWatched">
+  <img [src]="movie().image" />
+
+  <div class="content">
+    <h3>{{ movie().title }}</h3>
+
+    <div class="stars">
+      @for (star of [].constructor(movie().rating); track $index) {
+        ⭐
+      }
+    </div>
+
+    <div class="actions">
+      <button (click)="handleRate(-1)">-</button>
+      <button (click)="handleRate(1)">+</button>
+      <button (click)="handleToggle()">👁</button>
+      <button (click)="handleDelete()">🗑</button>
+    </div>
+  </div>
+</div>
