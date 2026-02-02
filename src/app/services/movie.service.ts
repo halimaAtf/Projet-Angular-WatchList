@@ -51,19 +51,45 @@ export class MovieService {
 
 
   addRandomMovie() {
+    // if all movies are already in the list, do nothing
+    if (this.movies.length >= this.movieBank.length) {
+      return;
+    }
+
+    let tries = 0;
+    while (tries < 100) {
+      const idx = Math.floor(Math.random() * this.movieBank.length);
+      const candidate = this.movieBank[idx];
+      const exists = this.movies.some(m => m.id === candidate.id);
+      if (!exists) {
+        this.movies.push({ ...candidate });
+        return;
       }
+      tries++;
+    }
+  }
 
 
   deleteMovie(id: number) {
+    this.movies = this.movies.filter(m => m.id !== id);
   }
 
 
   updateRating(id: number, delta: number) {
-      }
+    const movie = this.movies.find(m => m.id === id);
+    if (!movie) return;
+    const newRating = movie.rating + delta;
+    if (newRating >= 1 && newRating <= 5) {
+      movie.rating = newRating;
+    }
+  }
 
 
   toggleWatched(id: number) {
-     }
+    const movie = this.movies.find(m => m.id === id);
+    if (!movie) return;
+    movie.isWatched = !movie.isWatched;
+   }
 }
 
 
