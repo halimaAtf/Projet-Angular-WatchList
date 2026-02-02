@@ -22,7 +22,7 @@ export class MovieService {
     { id: 8, title: 'Top Gun: Maverick', year: 2022, rating: 5, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg' },
     { id: 9, title: 'Dune', year: 2021, rating: 4, isWatched: false, image: 'https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg' },
     { id: 10, title: 'Black Panther', year: 2018, rating: 4, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg' },
-   
+
     // --- DRAMA / THRILLER ---
     { id: 11, title: 'Joker', year: 2019, rating: 5, isWatched: false, image: 'https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg' },
     { id: 12, title: 'Pulp Fiction', year: 1994, rating: 5, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg' },
@@ -40,7 +40,7 @@ export class MovieService {
     { id: 21, title: 'Spirited Away', year: 2001, rating: 5, isWatched: false, image: 'https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUKGudW53yola.jpg' },
     { id: 22, title: 'Toy Story', year: 1995, rating: 4, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg' },
     { id: 23, title: 'Wall-E', year: 2008, rating: 5, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/hExQp2CstkGkN3W4721A0Fm1M8E.jpg' },
-   
+
     // --- CLASSICS ---
     { id: 24, title: 'Titanic', year: 1997, rating: 4, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg' },
     { id: 25, title: 'Back to the Future', year: 1985, rating: 5, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/fNOH9f1aA7XRTzl1sAQL9QB476a.jpg' }
