@@ -1,0 +1,82 @@
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.stream {
+  color: white;
+}
+
+.vibe {
+  color: #E50914;
+}
+
+/* Button Styling */
+.suggest-btn {
+  background-color: #E50914;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(229, 9, 20, 0.3);
+}
+
+.suggest-btn:hover {
+  background-color: #c11119;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.5);
+}
+
+.suggest-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(229, 9, 20, 0.4);
+}
+
+/* SVG Icon */
+.suggest-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 0.8rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .suggest-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .suggest-btn span {
+    display: none;
+  }
+}
