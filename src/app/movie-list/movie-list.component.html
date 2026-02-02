@@ -1,34 +1,33 @@
 <div class="movie-list-container">
-
   <div class="movies-grid">
     @for (movie of movieService.movies; track movie.id) {
-      <div class="card" [class.watched]="movie.isWatched">
-        <div class="poster">
-          <img [src]="movie.image" [alt]="movie.title" />
-        </div>
-        <div class="content">
-          <h3 class="title">{{ movie.title }}</h3>
+    <div class="card" [class.watched]="movie.isWatched">
+      <span class="badge" [class.badge-watched]="movie.isWatched">VU</span>
+      <div class="poster">
+        <img [src]="movie.image" [alt]="movie.title" />
+      </div>
+      <div class="content">
+        <h3 class="title">{{ movie.title }}</h3>
 
-          <div class="rating">
-            <div class="stars">
-              @for ( _ of getRange(movie.rating) ) {
-                <span class="star">★</span>
-              }
+        <div class="rating">
+          <div class="stars">
+            @for ( _ of getRange(movie.rating); track $index ) {
+            <span class="star">★</span>
             }
           </div>
+        </div>
 
-          <div class="actions">
-            <button class="btn" (click)="movieService.updateRating(movie.id, -1)">-</button>
-            <button class="btn" (click)="movieService.updateRating(movie.id, +1)">+</button>
-            <button class="btn" (click)="movieService.toggleWatched(movie.id)">👁</button>
-            <button class="btn" (click)="movieService.deleteMovie(movie.id)">🗑️</button>
-          </div>
+        <div class="actions">
+          <button class="btn" (click)="movieService.updateRating(movie.id, -1)">-</button>
+          <button class="btn" (click)="movieService.updateRating(movie.id, +1)">+</button>
+          <button class="btn" (click)="movieService.toggleWatched(movie.id)">👁</button>
+          <button class="btn" (click)="movieService.deleteMovie(movie.id)">🗑️</button>
         </div>
       </div>
+    </div>
     }
     @empty {
-      <p class="empty">Aucun film dans votre liste 🎬</p>
+    <p class="empty">Aucun film dans votre liste 🎬</p>
     }
   </div>
-
 </div>

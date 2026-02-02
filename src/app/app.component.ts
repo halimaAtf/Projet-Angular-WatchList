@@ -6,8 +6,7 @@ import { HeaderComponent } from "./components/header/header.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MovieListComponent],
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet, HeaderComponent,MovieListComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

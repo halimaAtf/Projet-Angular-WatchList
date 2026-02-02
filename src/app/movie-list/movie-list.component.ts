@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movie-list',
