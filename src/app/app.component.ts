@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { MovieService } from './services/movie.service';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { HeaderComponent } from "./components/header/header.component";
 
@@ -11,5 +13,9 @@ import { HeaderComponent } from "./components/header/header.component";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Projet-Angular-WatchList';
+
+  constructor(public movieService: MovieService) {
+    this.movieService.addRandomMovie();
+  }
 }
+

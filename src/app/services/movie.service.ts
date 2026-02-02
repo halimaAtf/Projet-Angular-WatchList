@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
   movies: Movie[] = [];
 
-
   // BANQUE DE 25 FILMS (Liens TMDB Officiels)
   private movieBank: Movie[] = [
     // --- ACTION / SCI-FI ---
     { id: 1, title: 'Inception', year: 2010, rating: 5, isWatched: false, image: 'https://image.tmdb.org/t/p/w500/8IB2e4r4oVhHnANbnm7O3Tj6tF8.jpg' },
     { id: 2, title: 'The Dark Knight', year: 2008, rating: 5, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg' },
-    { id: 3, title: 'Interstellar', year: 2014, rating: 4, isWatched: false, image: 'https://image.tmdb.org/t/p/w500/gEU2QniL6E77NI6lCU6MxlNBvIx.jpg' },
+    { id: 3, title: 'Interstellar', year: 2014, rating: 4, isWatched: false, image: 'https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg' },
     { id: 4, title: 'Avatar: The Way of Water', year: 2022, rating: 4, isWatched: false, image: 'https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg' },
     { id: 5, title: 'The Matrix', year: 1999, rating: 5, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg' },
     { id: 6, title: 'Avengers: Endgame', year: 2019, rating: 5, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg' },
@@ -32,7 +30,6 @@ export class MovieService {
     { id: 16, title: 'Parasite', year: 2019, rating: 5, isWatched: false, image: 'https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg' },
     { id: 17, title: 'Forrest Gump', year: 1994, rating: 4, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg' },
 
-
     // --- ANIMATION ---
     { id: 18, title: 'Spider-Man: Into the Spider-Verse', year: 2018, rating: 5, isWatched: false, image: 'https://image.tmdb.org/t/p/w500/xnopI5Xtky18MPhK40cZAGAOVeV.jpg' },
     { id: 19, title: 'Coco', year: 2017, rating: 5, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg' },
@@ -46,51 +43,58 @@ export class MovieService {
     { id: 25, title: 'Back to the Future', year: 1985, rating: 5, isWatched: true, image: 'https://image.tmdb.org/t/p/w500/fNOH9f1aA7XRTzl1sAQL9QB476a.jpg' }
   ];
 
-
   constructor() { }
 
-
-  addRandomMovie() {
-    // if all movies are already in the list, do nothing
+  /**
+   * Add a random movie from the bank that isn't already in the list
+   */
+  addRandomMovie(): void {
+    // If all movies are already in the list, do nothing
     if (this.movies.length >= this.movieBank.length) {
+      console.log('All movies have been added!');
       return;
     }
 
-    let tries = 0;
-    while (tries < 100) {
-      const idx = Math.floor(Math.random() * this.movieBank.length);
-      const candidate = this.movieBank[idx];
-      const exists = this.movies.some(m => m.id === candidate.id);
-      if (!exists) {
-        this.movies.push({ ...candidate });
-        return;
-      }
-      tries++;
-    }
+    // Get movies that haven't been added yet
+    const availableMovies = this.movieBank.filter(
+      bankMovie => !this.movies.some(m => m.id === bankMovie.id)
+    );
+
+    if (availableMovies.length === 0) return;
+
+    // Pick a random movie from available ones
+    const randomIndex = Math.floor(Math.random() * availableMovies.length);
+    this.movies.push({ ...availableMovies[randomIndex] });
   }
 
-
-  deleteMovie(id: number) {
-    this.movies = this.movies.filter(m => m.id !== id);
+  /**
+   * Delete a movie by ID
+   */
+  deleteMovie(id: number): void {
+    this.movies = this.movies.filter(movie => movie.id !== id);
   }
 
-
-  updateRating(id: number, delta: number) {
+  /**
+   * Update movie rating (+1 or -1)
+   * Rating stays between 1 and 5
+   */
+  updateRating(id: number, delta: number): void {
     const movie = this.movies.find(m => m.id === id);
     if (!movie) return;
+
     const newRating = movie.rating + delta;
     if (newRating >= 1 && newRating <= 5) {
       movie.rating = newRating;
     }
   }
 
-
-  toggleWatched(id: number) {
+  /**
+   * Toggle watched status (eye button)
+   */
+  toggleWatched(id: number): void {
     const movie = this.movies.find(m => m.id === id);
     if (!movie) return;
+
     movie.isWatched = !movie.isWatched;
-   }
+  }
 }
-
-
-
