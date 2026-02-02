@@ -50,20 +50,38 @@ export class MovieService {
   constructor() { }
 
 
-  addRandomMovie() {
-      }
+  addRandomMovie(): void {
+  const availableMovies = this.movieBank.filter(
+    m => !this.movies.find(movie => movie.id === m.id)
+  );
 
+  if (availableMovies.length === 0) return;
 
-  deleteMovie(id: number) {
+  const randomIndex = Math.floor(Math.random() * availableMovies.length);
+  this.movies.push({ ...availableMovies[randomIndex] });
+}
+
+deleteMovie(id: number): void {
+  this.movies = this.movies.filter(movie => movie.id !== id);
+}
+
+updateRating(id: number, delta: number): void {
+  const movie = this.movies.find(movie => movie.id === id);
+  if (!movie) return;
+
+  const newRating = movie.rating + delta;
+  if (newRating >= 1 && newRating <= 5) {
+    movie.rating = newRating;
   }
+}
 
+toggleWatched(id: number): void {
+  const movie = this.movies.find(movie => movie.id === id);
+  if (!movie) return;
 
-  updateRating(id: number, delta: number) {
-      }
+  movie.isWatched = !movie.isWatched;
+}
 
-
-  toggleWatched(id: number) {
-     }
 }
 
 
