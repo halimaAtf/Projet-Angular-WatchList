@@ -8,11 +8,8 @@ RUN npm run build -- --configuration production
 
 # Étape 2 : Serveur Nginx
 FROM nginx:alpine
-# Supprimer la page par défaut
 RUN rm -rf /usr/share/nginx/html/*
-# Copier uniquement le build Angular (browser)
-COPY --from=build /app/dist/atelier1-angular/browser /usr/share/nginx/html
-# Ajouter une config Nginx adaptée au routage Angular
+COPY --from=build /app/dist/projet-angular-watch-list/browser /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
